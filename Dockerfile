@@ -1,5 +1,8 @@
 FROM golang:1.8
 
+ENV TERM xterm
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y \
     alien \
     libaio1 \
