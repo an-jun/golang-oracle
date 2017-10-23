@@ -2,7 +2,9 @@ FROM golang:1.8
 
 RUN apt-get update && apt-get install -y \
     alien \
-    libaio1
+    libaio1 \
+    postfix \
+    mailutils
 
 COPY ./oracle_client /oracle-client
 
@@ -16,3 +18,11 @@ ENV PKG_CONFIG_PATH /oracle-client/
 RUN rm -r -f /oracle-client/oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm && \
     rm -r -f /oracle-client/oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm && \
     rm -r -f /oracle-client/oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
+
+COPY ./postfix_main.cf /etc/postfix/main.cf
+
+COPY ./entrypoint.sh /scripts/entrypoint.sh
+
+RUN chmod a+x /scripts/entrypoint.sh
+
+ENTRYPOINT ["/scripts/entrypoint.sh"]
