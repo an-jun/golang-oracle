@@ -23,3 +23,9 @@ RUN rm -r -f /oracle-client/oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.r
     rm -r -f /oracle-client/oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
 
 COPY ./postfix_main.cf /etc/postfix/main.cf
+
+COPY ./entrypoint.sh /scripts/entrypoint.sh
+
+RUN chmod a+x /scripts/entrypoint.sh
+
+ENTRYPOINT ["/scripts/entrypoint.sh"]
