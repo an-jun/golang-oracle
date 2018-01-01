@@ -22,7 +22,7 @@ func getDSN() string {
 	}
 	fmt.Fprintln(os.Stderr, `Please specifiy connection parameter in GO_OCI8_CONNECT_STRING environment variable,
 or as the first argument! (The format is user/name@host:port/sid)`)
-	return "vcowner/dbora999@127.0.0.1:1521/OPAT"
+	return "dbuser/123456@192.168.56.101:1521/xe"
 }
 
 func main() {
